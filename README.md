@@ -28,3 +28,6 @@ Humans need to do this repetitive work which consumes their time and effort.
 
 Phase 0 — Project Planning : Completed
 Phase 1 — Project Setup : Completed
+Phase 2 — Dataset Acquisition & Understanding : Completed
+Phase 3 — Explore Brands & Select one : Completed
+Phase 4 — Clean & Prepare Conversations : In progress
