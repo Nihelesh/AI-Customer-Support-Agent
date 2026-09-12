@@ -24,10 +24,22 @@ Humans need to do this repetitive work which consumes their time and effort.
 
 ## Evaluation
 
-## Project Status
+## Project Roadmap
 
-Phase 0 — Project Planning : Completed
-Phase 1 — Project Setup : Completed
-Phase 2 — Dataset Acquisition & Understanding : Completed
-Phase 3 — Explore Brands & Select one : Completed
-Phase 4 — Clean & Prepare Conversations : In progress
+| Phase        | Goal                                     | Status     |
+| ------------ | ---------------------------------------- | ---------- |
+| **Phase 0**  | 🧠 Understand + plan                     | ✅ Complete |
+| **Phase 1**  | 🏗️ GitHub repository + project skeleton | ✅ Complete |
+| **Phase 2**  | 📦 Obtain + understand dataset           | ✅ Complete |
+| **Phase 3**  | 🔎 Explore brands + select one           | ✅ Complete |
+| **Phase 4**  | 🧹 Clean + prepare conversations         | ⏳ Next     |
+| **Phase 5**  | 🏷️ Define intents                       | ⏳          |
+| **Phase 6**  | 🥇 Build golden evaluation set           | ⏳          |
+| **Phase 7**  | 🆚 Build baselines                       | ⏳          |
+| **Phase 8**  | 🤖 Build support AI agent                | ⏳          |
+| **Phase 9**  | 🧪 Build evaluation harness              | ⏳          |
+| **Phase 10** | 🔬 Failure analysis                      | ⏳          |
+| **Phase 11** | 📈 Improve system                        | ⏳          |
+| **Phase 12** | 📊 Final experiments + results           | ⏳          |
+| **Phase 13** | 📝 Report + decision log                 | ⏳          |
+| **Phase 14** | 🚀 GitHub cleanup + final submission     | ⏳          |
