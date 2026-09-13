@@ -10,164 +10,390 @@ The goal is to provide a practical and interpretable set of intents that can be 
 
 ---
 
-## 2. Taxonomy Design Approach
+## 2. Taxonomy Design 
 
-The taxonomy was developed through the following process:
+|  # | Intent                                      |
+| -: | ------------------------------------------- |
+|  1 | Billing / Subscription                      |
+|  2 | App / Device Technical Issues               |
+|  3 | Playback Bugs                               |
+|  4 | Content Availability / Catalog Gaps         |
+|  5 | Playlist Management                         |
+|  6 | Login / Account Access                      |
+|  7 | Ads                                         |
+|  8 | Student Discount / Eligibility Verification |
+|  9 | Feature Requests / Product Feedback         |
+| 10 | Offline / Downloads / Storage               |
+| 11 | Regional Availability                       |
+| 12 | Positive Feedback / Praise                  |
+| 13 | Support-Process Complaints                  |
+| 14 | Third-party / Platform Integration          |
+| 15 | Account Security / Hacking                  |
+| 16 | Payment / Card Errors                       |
+| 17 | Gift Cards / Redemption Codes               |
+| 18 | Other / Uncategorised                       |
 
-1. Reconstructed conversation threads from tweet-response relationships.
-2. Inspected sampled AmazonHelp conversations manually.
-3. Identified recurring customer problems and requests.
-4. Grouped similar observations into broader intent families.
-5. Created candidate intents within each family.
-6. Tested the candidate taxonomy on 50 previously unseen conversations.
-7. Confirmed that all 50 sampled conversations could be assigned to
-   an existing intent.
-8. Finalized the taxonomy for subsequent project phases.
 
-The taxonomy is intentionally designed to be practical for this project rather than attempting to reproduce Amazon's complete internal support taxonomy.
 
----
+1. BILLING_OR_SUBSCRIPTION
 
-## 3. Labeling Principle
+Definition:
+Questions or problems related to a Spotify subscription, Premium plan, billing cycle, renewal, cancellation, or subscription status.
 
-Each conversation is assigned one primary intent.
+Include:
 
-The primary intent represents the main customer problem or goal that needs to be addressed.
+Premium subscription problems
+Subscription cancellation
+Subscription renewal
+Questions about subscription charges
+Premium plan status
+Switching subscription plans
 
-If a conversation contains multiple issues, the issue that represents the customer's primary support need should be selected.
+Exclude:
 
----
+Card/payment method failing → PAYMENT_CARD_ERRORS
+Student Premium → STUDENT_DISCOUNT_OR_ELIGIBILITY
+Gift card/voucher → GIFT_CARDS_REDEMPTION_CODES
 
-## 4. Intent Families
+Example:
 
-### 4.1 Delivery
+"Why did my Premium subscription renew?"
 
-- DELIVERY_DELAY
-- DELIVERY_NOT_RECEIVED
-- DELIVERED_BUT_MISSING
-- DELIVERY_LOCATION_PROBLEM
-- COURIER_OR_DRIVER_ISSUE
-- DELIVERY_TRACKING_PROBLEM
-- DELIVERY_ATTEMPT_PROBLEM
-- DAMAGED_DURING_DELIVERY
+2. APP_OR_DEVICE_TECHNICAL_ISSUES
 
-### 4.2 Orders
+Definition:
+Technical problems involving the Spotify application or the device running Spotify, where the primary issue is the app/device rather than playback itself.
 
-- ORDER_CANCELLATION
-- ORDER_PLACEMENT_PROBLEM
-- ORDER_STATUS
-- ORDER_MODIFICATION
-- WRONG_OR_MISSING_ITEM
-- PRODUCT_AVAILABILITY
+Include:
 
-### 4.3 Returns
+App crashes
+App won't open
+App errors
+Spotify not working on a particular device
+Device compatibility problems
 
-- RETURN_REQUEST
-- RETURN_ELIGIBILITY
-- RETURN_PICKUP_PROBLEM
-- RETURN_PROBLEM
-- REPLACEMENT_PROBLEM
+Exclude:
 
-### 4.4 Payment & Billing
+Music specifically won't play → PLAYBACK_BUGS
+Download/offline issue → OFFLINE_DOWNLOADS_OR_STORAGE
+Connecting Spotify to another platform/device → THIRD_PARTY_PLATFORM_INTEGRATION
 
-- PAYMENT_FAILURE
-- CHARGE_PROBLEM
-- REFUND_MONEY_PROBLEM
-- DUPLICATE_CHARGE
-- UNAUTHORIZED_PAYMENT
-- AMAZON_PAY_PROBLEM
+Example:
 
-### 4.5 Prime & Subscriptions
+"Spotify keeps crashing on my phone."
 
-- PRIME_MEMBERSHIP_PROBLEM
-- PRIME_CHARGE_OR_RENEWAL
-- PRIME_BENEFIT_PROBLEM
-- SUBSCRIPTION_PROBLEM
+3. PLAYBACK_BUGS
 
-### 4.6 Technical / Digital
+Definition:
+Problems occurring while attempting to play music/audio.
 
-- DEVICE_PROBLEM
-- APP_OR_WEBSITE_PROBLEM
-- DIGITAL_CONTENT_PROBLEM
-- STREAMING_OR_PLAYBACK_PROBLEM
-- ACCOUNT_LINKING_OR_CONNECTIVITY_PROBLEM
+Include:
 
-### 4.7 Security & Fraud
+Songs won't play
+Music stops unexpectedly
+Playback pauses
+Buffering
+Audio playback errors
+Songs skipping
 
-- SUSPICIOUS_EMAIL_OR_PHISHING
-- SCAM_OR_FRAUD_CONCERN
-- UNAUTHORIZED_ACCOUNT_ACTIVITY
+Exclude:
 
-### 4.8 Promotions & Offers
+Can't download songs → OFFLINE_DOWNLOADS_OR_STORAGE
+Song doesn't exist in Spotify → CONTENT_AVAILABILITY_OR_CATALOG_GAPS
 
-- PROMOTION_OR_DISCOUNT_PROBLEM
-- CASHBACK_PROBLEM
-- CONTEST_OR_QUIZ_INQUIRY
-- OFFER_ELIGIBILITY
+Example:
 
-### 4.9 Customer Service
+"My songs keep stopping after a few seconds."
 
-- CUSTOMER_SERVICE_COMPLAINT
-- SUPPORT_AGENT_COMPLAINT
-- UNRESOLVED_SUPPORT_ISSUE
-- ESCALATION_REQUEST
+4. CONTENT_AVAILABILITY_OR_CATALOG_GAPS
 
-### 4.10 General / Other
+Definition:
+Questions or complaints about music, albums, artists, podcasts, or other content being missing, unavailable, or incorrectly represented in Spotify's catalog.
 
-- GENERAL_INFORMATION
-- PRODUCT_INFORMATION
-- FEEDBACK
-- APPRECIATION
-- UNCLEAR_REQUEST
+Include:
 
----
+Missing songs
+Missing albums
+Missing artists
+Request for unavailable music
+Removed content
+Catalog discrepancies
 
-## 5. Taxonomy Validation
+Exclude:
 
-The candidate taxonomy was tested using 50 previously unseen AmazonHelp conversations.
+Country-specific availability → REGIONAL_AVAILABILITY
+Playback failure → PLAYBACK_BUGS
 
-All 50 conversations could be assigned to an existing intent.
+Example:
 
-No additional intent category was required during this validation sample.
+"Why isn't this album available on Spotify?"
 
-This provided sufficient evidence to freeze the taxonomy for the remaining project phases.
+5. PLAYLIST_MANAGEMENT
 
----
+Definition:
+Problems or requests specifically involving playlists.
 
-## 6. Important Boundary Rules
+Include:
 
-### Delivery Delay vs Delivered but Missing
+Creating playlists
+Editing playlists
+Deleting playlists
+Missing playlists
+Recovering playlists
+Adding/removing songs from playlists
 
-If the customer says the package has not arrived and delivery is still pending, use:
+Example:
 
-`DELIVERY_DELAY`
+"My playlist disappeared. How can I recover it?"
 
-If Amazon shows the package as delivered but the customer cannot find it, use:
+6. LOGIN_OR_ACCOUNT_ACCESS
 
-`DELIVERED_BUT_MISSING`
+Definition:
+Problems accessing or logging into a Spotify account.
 
-### Payment Failure vs Unauthorized Payment
+Include:
 
-If the customer attempted a payment and it failed, use:
+Can't log in
+Forgot password
+Login problems
+Can't access account
+Account access problems
 
-`PAYMENT_FAILURE`
+Exclude:
 
-If the customer does not recognize a transaction, use:
+Account hacked → ACCOUNT_SECURITY_OR_HACKING
+General subscription problem → BILLING_OR_SUBSCRIPTION
 
-`UNAUTHORIZED_PAYMENT`
+Example:
 
-### Product Problem vs Delivery Problem
+"I can't log into my Spotify account."
 
-If the package arrived but the product itself is damaged or defective, use a product-related intent.
+7. ADS
 
-If the package or delivery process itself caused the problem, use a delivery-related intent.
+Definition:
+Questions, complaints, or feedback specifically about advertisements displayed during Spotify usage.
 
-### Prime Delivery vs Prime Membership
+Include:
 
-If the main issue concerns delivery performance, use a delivery intent.
+Too many ads
+Ads playing frequently
+Ad-related complaints
+Questions about advertisements
 
-If the main issue concerns Prime membership, renewal, charges, or benefits, use a Prime-related intent.
+Example:
 
-### Feedback
+"Why am I getting so many ads?"
 
-If the customer is primarily praising or commenting on the support experience rather than requesting resolution of another issue, use the appropriate Customer Service or General / Other intent.
+8. STUDENT_DISCOUNT_OR_ELIGIBILITY
+
+Definition:
+Issues concerning Spotify's student plan, student discount, or student eligibility/verification.
+
+Include:
+
+Student discount
+Student Premium
+Student verification
+Eligibility problems
+University/student status
+
+Example:
+
+"Why can't I verify my student status?"
+
+9. FEATURE_REQUESTS_OR_PRODUCT_FEEDBACK
+
+Definition:
+Suggestions, requests, or feedback about Spotify's product or features.
+
+Include:
+
+Requests for new features
+Suggestions for improvements
+Feature ideas
+Product feedback
+Requests to change how Spotify works
+
+Example:
+
+"Spotify should add a feature to show lyrics while playing."
+
+Important:
+A complaint about customer support is not this intent. That belongs to SUPPORT_PROCESS_COMPLAINTS.
+
+10. OFFLINE_DOWNLOADS_OR_STORAGE
+
+Definition:
+Problems or questions involving downloading music, offline listening, or Spotify's storage usage.
+
+Include:
+
+Download failures
+Offline mode
+Downloaded songs unavailable offline
+Storage problems caused by Spotify
+Managing downloaded content
+
+Example:
+
+"My downloaded songs aren't available offline."
+
+11. REGIONAL_AVAILABILITY
+
+Definition:
+Problems caused by country, region, location, or geographical availability restrictions.
+
+Include:
+
+Spotify unavailable in a country
+Content unavailable in a particular country
+Country restrictions
+Region-specific features
+Moving to another country
+
+Example:
+
+"Why isn't Spotify available in my country?"
+
+Key distinction
+
+If the customer says:
+
+"This song isn't available in my country."
+
+→ REGIONAL_AVAILABILITY
+
+If they say:
+
+"This song isn't available on Spotify."
+
+→ CONTENT_AVAILABILITY_OR_CATALOG_GAPS
+
+12. POSITIVE_FEEDBACK_OR_PRAISE
+
+Definition:
+Purely positive customer feedback without a support problem or request requiring resolution.
+
+Include:
+
+Compliments
+Praise
+Thank-you messages
+Positive comments about Spotify
+
+Example:
+
+"Spotify is amazing! I love the new update."
+
+Important:
+If the message contains both praise and a problem, classify according to the problem/request, not this intent.
+
+13. SUPPORT_PROCESS_COMPLAINTS
+
+Definition:
+Complaints about Spotify's customer-support process or service experience.
+
+Include:
+
+Poor customer service
+Slow support
+Support not responding
+Repeated automated responses
+Complaints about support handling
+Frustration with support representatives/process
+
+Example:
+
+"I've contacted support three times and nobody has helped me."
+
+14. THIRD_PARTY_PLATFORM_INTEGRATION
+
+Definition:
+Problems involving Spotify's connection or integration with another application, platform, service, or external device.
+
+Include:
+
+Spotify + Facebook
+Spotify + PlayStation/Xbox
+Spotify + Google/Alexa
+Spotify + another application
+Connecting Spotify to external services
+Third-party integration problems
+
+Example:
+
+"I can't connect Spotify to my PlayStation."
+
+15. ACCOUNT_SECURITY_OR_HACKING
+
+Definition:
+Problems involving unauthorized access, hacking, compromised accounts, or suspicious account activity.
+
+Include:
+
+Account hacked
+Someone accessed account
+Unauthorized account activity
+Suspicious login
+Password changed by someone else
+Unknown activity
+
+Exclude:
+
+Simply can't log in → LOGIN_OR_ACCOUNT_ACCESS
+
+Example:
+
+"Someone hacked my Spotify account and changed my password."
+
+16. PAYMENT_CARD_ERRORS
+
+Definition:
+Problems specifically involving a payment method or payment transaction failure.
+
+Include:
+
+Credit/debit card declined
+Card not accepted
+Payment failed
+Payment method error
+Can't complete payment
+
+Exclude:
+
+Why was I charged? → BILLING_OR_SUBSCRIPTION
+Student payment/discount → STUDENT_DISCOUNT_OR_ELIGIBILITY
+Gift card → GIFT_CARDS_REDEMPTION_CODES
+
+Example:
+
+"My credit card keeps getting declined when I try to pay."
+
+17. GIFT_CARDS_REDEMPTION_CODES
+
+Definition:
+Problems involving Spotify gift cards, vouchers, promotional codes, or redemption codes.
+
+Include:
+
+Gift card not working
+Voucher problems
+Redemption code errors
+Can't redeem a code
+Gift card balance
+
+Example:
+
+"My Spotify gift card code isn't working."
+
+18. OTHER_OR_UNCATEGORISED
+
+This should be your fallback only.
+
+Use it when:
+
+The conversation genuinely cannot be mapped to any of the 17 defined intents.
+
+Do not use it just because you're uncertain.
+
+If you find yourself using OTHER frequently, that is evidence that the taxonomy needs another intent or that an existing definition needs improvement.
